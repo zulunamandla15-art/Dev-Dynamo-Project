@@ -23,5 +23,10 @@ namespace Dev_Dynamo_Project
             Registration.Show();
             this.Hide();
         }
+
+        private void frmRecycling_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

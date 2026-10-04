@@ -47,5 +47,10 @@ namespace Dev_Dynamo_Project
             Login.Show();
             this.Hide();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           string CurrentPassword = txtPassword.Text.Trim();
+        }
     }
 }

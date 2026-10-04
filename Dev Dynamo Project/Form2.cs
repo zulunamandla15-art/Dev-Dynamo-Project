@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Dev_Dynamo_Project
 {
@@ -20,7 +21,7 @@ namespace Dev_Dynamo_Project
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            // ===== 1. DECLARE ALL YOUR TEXTBOXES FIRST =====
+            // Getting Values from Texbox//
             string fullName = txtFullNames.Text.Trim();
             string idNumber = txtIDNumber.Text.Trim();
             string email = txtEmailAddress.Text.Trim();
@@ -29,29 +30,85 @@ namespace Dev_Dynamo_Project
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text.Trim();
             string confirmPassword = txtConfirm.Text.Trim();
-            int years = (int)nubHowlong.Value; // your NumericUpDown with 0
+            int years = (int)nubHowlong.Value; //  NumericUpDown with 0
 
 
-
-
-
-            // 1. SAVE the username & password so login can use it
-            // Replace txtUsername, txtPassword, txtConfirm with your actual textbox names
-            if (txtPassword.Text != txtConfirm.Text)
+            string vehicle;
+            if (radVehicleYes.Checked)
             {
-                MessageBox.Show("Passwords don't match!");
-                return;
+                vehicle = "Yes";
+            }
+            else
+            {
+                vehicle = "No";
             }
 
-            Userstore.Username = txtUsername.Text;
-            Userstore.Password = txtPassword.Text;
+            //  Checking if the applicant has License or not
+            string License;
+            if (radLicenseYes.Checked)
+            {
+                License = "Yes";
+            }
+            else
+            {
+                License = "No";
+            }
 
-            MessageBox.Show("Registered! You can now login with: " + Userstore.Username);
+            //Checking if the user left spaces on each of these required field then pops a message if one of these was left blank
+            if (fullName == "" ||
+                idNumber == "" ||
+                email == "" ||
+                cellphone == "" ||
+                businessName == "" ||
+                username == "" ||
+                password == "" ||
+                confirmPassword == "" ||
+                years == 0)
 
-            // 2. YOUR OLD CODE - this moves to next page - KEEP IT
-            frmLogin Login = new frmLogin();
-            Login.Show();
-            this.Hide();
+
+            {
+                MessageBox.Show("Please fill in all required fileds!!!!");
+                return;
+            }
+            //Opening a folder to save all applicants information
+
+            StreamWriter writer = new StreamWriter("SMME_Registration.txt ", true);
+            using (writer)
+            {
+                //Saving application information to that "SMME_Registration" folder
+
+                writer.WriteLine("==================================================");
+                writer.WriteLine("Applicant");
+                writer.WriteLine("===================================================");
+                writer.WriteLine("Full Names:\t\t\t" + fullName);
+                writer.WriteLine("ID Number:\t\t\t" + idNumber);
+                writer.WriteLine("Year Born:\t\t\t" + dateTimePicker1.Text);
+                writer.WriteLine("Email Address:\t\t" + email);
+                writer.WriteLine("Cellphone Number:\t" + cellphone);
+                writer.WriteLine("Business Name:\t\t" + businessName);
+                writer.WriteLine("Username\t\t\t" + username);
+                writer.WriteLine("Password\t\t\t" + password);
+
+
+
+                // Saving  the username & password so login can use it//
+
+                if (txtPassword.Text != txtConfirm.Text)
+                {
+                    MessageBox.Show("Passwords don't match!");
+                    return;
+                }
+
+                Userstore.Username = txtUsername.Text;
+                Userstore.Password = txtPassword.Text;
+
+                MessageBox.Show("You've Sucessfully Registered");
+
+                // 2. OLD CODE - this moves to next page - KEEP IT
+                frmLogin Login = new frmLogin();
+                Login.Show();
+                this.Hide();
+            }
         }
 
         private void frmRegistration_KeyPress(object sender, KeyPressEventArgs e)
@@ -73,9 +130,9 @@ namespace Dev_Dynamo_Project
 
         private void txtFullNames_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
 
-            
+
+
         }
 
         private void txtIDNumber_KeyPress(object sender, KeyPressEventArgs e)
@@ -93,7 +150,7 @@ namespace Dev_Dynamo_Project
         private void txtIDNumber_Validating(object sender, CancelEventArgs e)
         {
 
-            // First check: numbers only
+            //Checking if is it numbers only entered or not nif not gives warning soon as tries to move to the next button//
             foreach (char c in txtIDNumber.Text)
             {
                 if (!char.IsDigit(c))
@@ -109,7 +166,8 @@ namespace Dev_Dynamo_Project
                 }
             }
 
-            // Second check: exactly 13 digits
+            //Checking if the user entered exactly 13 digit needed or more or less//
+            string idNumber = txtIDNumber.Text.Trim();
             if (txtIDNumber.Text.Length != 13)
             {
                 MessageBox.Show(
@@ -121,12 +179,14 @@ namespace Dev_Dynamo_Project
                 txtIDNumber.Focus();
                 return;
             }
+
+            
         }
 
         private void txtCellphone_Validating(object sender, CancelEventArgs e)
         {
 
-            // First check: numbers only
+            // checking if is it numbers entered or not
             foreach (char c in txtCellphone.Text)
             {
                 if (!char.IsDigit(c))
@@ -142,7 +202,7 @@ namespace Dev_Dynamo_Project
                 }
             }
 
-            // Second check: exactly 10 digits of Cellphone Number
+            // Checking exactly 10 digits of Cellphone Number
             if (txtCellphone.Text.Length != 10)
             {
                 MessageBox.Show(
@@ -160,21 +220,14 @@ namespace Dev_Dynamo_Project
         {
             string email = txtEmailAddress.Text.Trim();
 
-            // Check if the email is empty
+            // Check if the email is empty and pop up message 
             if (email == "")
             {
-                MessageBox.Show(
-                    "Please enter an email address.",
-                    "Email Required",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
-                txtEmailAddress.Focus();
+                MessageBox.Show("Please enter an email address");
                 return;
             }
 
-            // Check for capital letters
+            // Checking for capital letters on email entered
             if (email != email.ToLower())
             {
                 MessageBox.Show(
@@ -188,7 +241,7 @@ namespace Dev_Dynamo_Project
                 return;
             }
 
-            // Check the email format
+            // Checking  the email format
             string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
 
             if (!Regex.IsMatch(email, emailPattern))
@@ -208,7 +261,7 @@ namespace Dev_Dynamo_Project
         private void nubHowlong_Validating(object sender, CancelEventArgs e)
         {
 
-
+            //Checking if the applicants met the application years of eperating requirements
             int years = (int)nubHowlong.Value;
 
             if (years < 4)
@@ -222,16 +275,18 @@ namespace Dev_Dynamo_Project
 
                 return;
             }
+
         }
 
         private void dateTimePicker1_Validating(object sender, CancelEventArgs e)
         {
-            DateTime dateOfBirth = dateTimePicker1.Value.Date;
+            string idNumber = txtIDNumber.Text;
+            DateTime dateOfBirth = dateTimePicker1.Value;
             DateTime today = DateTime.Today;
 
             int age = today.Year - dateOfBirth.Year;
 
-            // Check whether the birthday has happened this year
+            // If birthday has not happened yet this year
             if (dateOfBirth.Date > today.AddYears(-age))
             {
                 age--;
@@ -240,19 +295,49 @@ namespace Dev_Dynamo_Project
             if (age < 20)
             {
                 MessageBox.Show(
-                    "You must be at least 20 years old to apply.",
-                    "Application Rejected",
+                    "Applicant unsuccessful. You are under age.",
+                    "Application Unsuccessful",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                    MessageBoxIcon.Warning);
 
+                // Prevent the user from moving to the next field
+                e.Cancel = true;
+            }
+            string idYear = idNumber.Substring(0, 2);
+            string idMonth = idNumber.Substring(2, 2);
+            string idDay = idNumber.Substring(4, 2);
+
+            int twoDigitYear = int.Parse(idYear);
+            int fullYear;
+
+            if (twoDigitYear <= int.Parse(DateTime.Now.ToString("yy")))
+            {
+                fullYear = 2000 + twoDigitYear;
+            }
+            else
+            {
+                fullYear = 1900 + twoDigitYear;
+            }
+
+            // Check YEAR, MONTH and DAY
+            if (dateOfBirth.Year != fullYear ||
+                dateOfBirth.Month != int.Parse(idMonth) ||
+                dateOfBirth.Day != int.Parse(idDay))
+            {
+                MessageBox.Show(
+                    "ID number and date of birth do not match. Please go back and correct your information.",
+                    "Invalid Date of Birth",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                e.Cancel = true;
                 return;
             }
         }
+                
 
         private void txtFullNames_Validating(object sender, CancelEventArgs e)
         {
-            
+
             string fullName = txtFullNames.Text.Trim();
 
             // Check if the name is empty
@@ -269,7 +354,7 @@ namespace Dev_Dynamo_Project
                 return;
             }
 
-            // Check if the name contains only letters and spaces
+            // Check if the name contains only letters and spaces no specialn characters needed
             foreach (char c in fullName)
             {
                 if (!char.IsLetter(c) && !char.IsWhiteSpace(c))
@@ -289,6 +374,7 @@ namespace Dev_Dynamo_Project
 
         private void radVehicleYes_CheckedChanged(object sender, EventArgs e)
         {
+
             if (radVehicleYes.Checked)
             {
                 radVehicleNo.Checked = false;
@@ -325,7 +411,81 @@ namespace Dev_Dynamo_Project
             Recycling.Show();
             this.Hide();
         }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+
+
+        }
+
+        private void txtPassword_Validating(object sender, CancelEventArgs e)
+        {
+          string password = txtPassword.Text;
+
+            // Check if password has at least 8 characters
+            if (password.Length < 8)
+            {
+                MessageBox.Show("Password must contain at least 8 characters");
+                e.Cancel = true;
+                return;
+            }
+
+            // Checking password requirements
+            bool hasCapital = false;
+            bool hasNumber = false;
+            bool hasSpecial = false;
+
+            foreach (char character in password)
+            {
+                if (char.IsUpper(character))
+                {
+                    hasCapital = true;
+                }
+
+                if (char.IsDigit(character))
+                {
+                    hasNumber = true;
+                }
+
+                if (!char.IsLetterOrDigit(character))
+                {
+                    hasSpecial = true;
+                }
+            }
+
+            // Check if any requirement is missing
+            if (!hasCapital || !hasNumber || !hasSpecial)
+            {
+                MessageBox.Show(
+                    "Password must contain:\n" +
+                    "At least 8 characters\n" +
+                    "At least one capital letter\n" +
+                    "At least one number\n" +
+                    "At least one special character"
+                );
+
+                
+                return;
+            }
+
+           
+          
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }
+
+
+
+
+
+
+
+
 

@@ -34,7 +34,7 @@ namespace Dev_Dynamo_Project
         {
             // 1. DECLARE FIRST
             string wasteType = cmbWasteType.Text.Trim();
-            double weight = (double)nubWeight.Value; // <-- FOR NUMERIC UP DOWN
+            double weight = (double)nubWeight.Value; 
             string date = dtpCollectionDate.Value.ToShortDateString();
             string proofPath = selectedImagePath;
 
@@ -55,11 +55,11 @@ namespace Dev_Dynamo_Project
 
             DataStore.AllCollections.Add(newCollection);
 
-            MessageBox.Show("Collection Submitted! Municipality can now see it.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Collection Submitted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Clear form
             cmbWasteType.SelectedIndex = -1;
-            nubWeight.Value = 0; // <-- FOR NUMERIC UP DOWN, not Clear()
+            nubWeight.Value = 0; 
             picProof.Image = null;
             selectedImagePath = "";
         }

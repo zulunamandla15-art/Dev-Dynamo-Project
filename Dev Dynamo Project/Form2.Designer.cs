@@ -52,11 +52,11 @@
             this.lblConfirm = new System.Windows.Forms.Label();
             this.txtConfirm = new System.Windows.Forms.TextBox();
             this.grpVehicle = new System.Windows.Forms.GroupBox();
-            this.grpLicense = new System.Windows.Forms.GroupBox();
-            this.radVehicleYes = new System.Windows.Forms.RadioButton();
             this.radVehicleNo = new System.Windows.Forms.RadioButton();
-            this.radLicenseYes = new System.Windows.Forms.RadioButton();
+            this.radVehicleYes = new System.Windows.Forms.RadioButton();
+            this.grpLicense = new System.Windows.Forms.GroupBox();
             this.radLicenseNo = new System.Windows.Forms.RadioButton();
+            this.radLicenseYes = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.nubHowlong)).BeginInit();
             this.grpVehicle.SuspendLayout();
             this.grpLicense.SuspendLayout();
@@ -159,7 +159,7 @@
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(146, 46);
             this.btnRegister.TabIndex = 10;
-            this.btnRegister.Text = "Register";
+            this.btnRegister.Text = "Registration";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
@@ -190,6 +190,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(363, 30);
             this.dateTimePicker1.TabIndex = 13;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             this.dateTimePicker1.Validating += new System.ComponentModel.CancelEventHandler(this.dateTimePicker1_Validating);
             // 
             // txtEmailAddress
@@ -237,6 +238,8 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(363, 30);
             this.txtPassword.TabIndex = 19;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
             // 
             // lblConfirm
             // 
@@ -265,16 +268,17 @@
             this.grpVehicle.TabStop = false;
             this.grpVehicle.Text = "Do you have a Vehicle?";
             // 
-            // grpLicense
+            // radVehicleNo
             // 
-            this.grpLicense.Controls.Add(this.radLicenseNo);
-            this.grpLicense.Controls.Add(this.radLicenseYes);
-            this.grpLicense.Location = new System.Drawing.Point(882, 181);
-            this.grpLicense.Name = "grpLicense";
-            this.grpLicense.Size = new System.Drawing.Size(329, 100);
-            this.grpLicense.TabIndex = 23;
-            this.grpLicense.TabStop = false;
-            this.grpLicense.Text = "Do you have a License?";
+            this.radVehicleNo.AutoSize = true;
+            this.radVehicleNo.Location = new System.Drawing.Point(168, 60);
+            this.radVehicleNo.Name = "radVehicleNo";
+            this.radVehicleNo.Size = new System.Drawing.Size(60, 29);
+            this.radVehicleNo.TabIndex = 1;
+            this.radVehicleNo.TabStop = true;
+            this.radVehicleNo.Text = "No";
+            this.radVehicleNo.UseVisualStyleBackColor = true;
+            this.radVehicleNo.CheckedChanged += new System.EventHandler(this.radVehicleNo_CheckedChanged);
             // 
             // radVehicleYes
             // 
@@ -288,29 +292,16 @@
             this.radVehicleYes.UseVisualStyleBackColor = true;
             this.radVehicleYes.CheckedChanged += new System.EventHandler(this.radVehicleYes_CheckedChanged);
             // 
-            // radVehicleNo
+            // grpLicense
             // 
-            this.radVehicleNo.AutoSize = true;
-            this.radVehicleNo.Location = new System.Drawing.Point(168, 60);
-            this.radVehicleNo.Name = "radVehicleNo";
-            this.radVehicleNo.Size = new System.Drawing.Size(60, 29);
-            this.radVehicleNo.TabIndex = 1;
-            this.radVehicleNo.TabStop = true;
-            this.radVehicleNo.Text = "No";
-            this.radVehicleNo.UseVisualStyleBackColor = true;
-            this.radVehicleNo.CheckedChanged += new System.EventHandler(this.radVehicleNo_CheckedChanged);
-            // 
-            // radLicenseYes
-            // 
-            this.radLicenseYes.AutoSize = true;
-            this.radLicenseYes.Location = new System.Drawing.Point(7, 65);
-            this.radLicenseYes.Name = "radLicenseYes";
-            this.radLicenseYes.Size = new System.Drawing.Size(70, 29);
-            this.radLicenseYes.TabIndex = 2;
-            this.radLicenseYes.TabStop = true;
-            this.radLicenseYes.Text = "Yes";
-            this.radLicenseYes.UseVisualStyleBackColor = true;
-            this.radLicenseYes.CheckedChanged += new System.EventHandler(this.radLicenseYes_CheckedChanged);
+            this.grpLicense.Controls.Add(this.radLicenseNo);
+            this.grpLicense.Controls.Add(this.radLicenseYes);
+            this.grpLicense.Location = new System.Drawing.Point(882, 181);
+            this.grpLicense.Name = "grpLicense";
+            this.grpLicense.Size = new System.Drawing.Size(329, 100);
+            this.grpLicense.TabIndex = 23;
+            this.grpLicense.TabStop = false;
+            this.grpLicense.Text = "Do you have a License?";
             // 
             // radLicenseNo
             // 
@@ -323,6 +314,18 @@
             this.radLicenseNo.Text = "No";
             this.radLicenseNo.UseVisualStyleBackColor = true;
             this.radLicenseNo.CheckedChanged += new System.EventHandler(this.radLicenseNo_CheckedChanged);
+            // 
+            // radLicenseYes
+            // 
+            this.radLicenseYes.AutoSize = true;
+            this.radLicenseYes.Location = new System.Drawing.Point(7, 65);
+            this.radLicenseYes.Name = "radLicenseYes";
+            this.radLicenseYes.Size = new System.Drawing.Size(70, 29);
+            this.radLicenseYes.TabIndex = 2;
+            this.radLicenseYes.TabStop = true;
+            this.radLicenseYes.Text = "Yes";
+            this.radLicenseYes.UseVisualStyleBackColor = true;
+            this.radLicenseYes.CheckedChanged += new System.EventHandler(this.radLicenseYes_CheckedChanged);
             // 
             // frmRegistration
             // 

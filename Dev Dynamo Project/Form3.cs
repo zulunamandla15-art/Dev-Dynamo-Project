@@ -28,7 +28,7 @@ namespace Dev_Dynamo_Project
             // 1. First check username and password
             if (txtUsername.Text != Userstore.Username || txtPassword.Text != Userstore.Password)
             {
-                MessageBox.Show("Wrong! You registered as: " + Userstore.Username);
+                MessageBox.Show("Password does not match!");
                 return;
             }
 

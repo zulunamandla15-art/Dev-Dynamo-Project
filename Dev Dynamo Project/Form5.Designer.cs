@@ -103,7 +103,7 @@
             this.cmbWasteType.FormattingEnabled = true;
             this.cmbWasteType.Items.AddRange(new object[] {
             "Paper",
-            "Platic",
+            "Plastic",
             "Glass",
             "Cans"});
             this.cmbWasteType.Location = new System.Drawing.Point(326, 186);

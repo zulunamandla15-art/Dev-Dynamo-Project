@@ -35,18 +35,20 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.lblCurrent = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(511, 250);
+            this.txtUsername.Location = new System.Drawing.Point(562, 368);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(216, 30);
             this.txtUsername.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(511, 347);
+            this.txtPassword.Location = new System.Drawing.Point(562, 439);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(216, 30);
             this.txtPassword.TabIndex = 1;
@@ -54,16 +56,16 @@
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(329, 350);
+            this.lblPassword.Location = new System.Drawing.Point(346, 444);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(113, 25);
+            this.lblPassword.Size = new System.Drawing.Size(161, 25);
             this.lblPassword.TabIndex = 2;
-            this.lblPassword.Text = "Password:";
+            this.lblPassword.Text = "New Password:";
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(329, 263);
+            this.lblUsername.Location = new System.Drawing.Point(376, 298);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(117, 25);
             this.lblUsername.TabIndex = 3;
@@ -89,12 +91,31 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // lblCurrent
+            // 
+            this.lblCurrent.AutoSize = true;
+            this.lblCurrent.Location = new System.Drawing.Point(346, 373);
+            this.lblCurrent.Name = "lblCurrent";
+            this.lblCurrent.Size = new System.Drawing.Size(191, 25);
+            this.lblCurrent.TabIndex = 6;
+            this.lblCurrent.Text = "Current Password:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(562, 293);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(216, 30);
+            this.textBox1.TabIndex = 7;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // frmResetPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1300, 703);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lblCurrent);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.lblUsername);
@@ -118,5 +139,7 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Label lblCurrent;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
