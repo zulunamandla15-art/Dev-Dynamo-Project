@@ -98,7 +98,7 @@ namespace Dev_Dynamo_Project
                     MessageBox.Show("Passwords don't match!");
                     return;
                 }
-
+                //storing username
                 Userstore.Username = txtUsername.Text;
                 Userstore.Password = txtPassword.Text;
 
