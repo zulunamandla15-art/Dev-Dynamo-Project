@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Dev_Dynamo_Project
 {
     public partial class frmSMME : Form
     {
+        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "SMMECollections.txt");
         string selectedImagePath = " ";
         public frmSMME()
         {
@@ -32,36 +34,59 @@ namespace Dev_Dynamo_Project
 
         private void btnSubmitCollection_Click(object sender, EventArgs e)
         {
-            // 1. DECLARE FIRST
-            string wasteType = cmbWasteType.Text.Trim();
-            double weight = (double)nubWeight.Value; 
-            string date = dtpCollectionDate.Value.ToShortDateString();
-            string proofPath = selectedImagePath;
 
-            // 2. Validation
-            if (wasteType == "" || weight == 0 || proofPath == "")
+            if (cmbWasteType.SelectedIndex == -1)
             {
-                MessageBox.Show("Please fill all collection details and upload proof", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select the waste type.");
+                cmbWasteType.Focus();
+                return;
+            }
+            if (nudWeight.Value <= 0)
+            {
+                MessageBox.Show("Please enter the weight.");
+                nudWeight.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(selectedImagePath))
+            {
+                MessageBox.Show("Please upload collection proof.");
                 return;
             }
 
-            // 3. Save to central DataStore
-            WasteCollection newCollection = new WasteCollection();
-            newCollection.BusinessName = Userstore.Username;
-            newCollection.WasteType = wasteType;
-            newCollection.WeightKG = weight;
-            newCollection.CollectionDate = date;
-            newCollection.ProofImagePath = proofPath;
+            // 1. DECLARE FIRST
+            string submissionID = Guid.NewGuid().ToString();
+            string wasteType = cmbWasteType.Text.Trim();
+            double weight = (double)nudWeight.Value;
+            string collectionDate = dtpCollectionDate.Value.ToString("yyyy/MM/dd");
+            string proofFilePath = selectedImagePath;
+            string collectionStatus = "Pending";
+            string paymentStatus = "Unpaid";
 
-            DataStore.AllCollections.Add(newCollection);
+            using (var writer = new StreamWriter(filePath, true))
+            {
+                writer.WriteLine("----- SMME Collection Record -----");
+                writer.WriteLine($"Date Collected : {collectionDate}");
+                writer.WriteLine($"Waste Type     : {wasteType}");
+                writer.WriteLine($"Weight         : {weight} KG");
+                writer.WriteLine($"Proof File     : {Path.GetFileName(proofFilePath)}");
+                writer.WriteLine($"Collection ID  : {submissionID}");
+                writer.WriteLine($"Status         : {collectionStatus} - Waiting for approval");
+                writer.WriteLine($"Payment        : {paymentStatus}-Pending");
+                writer.WriteLine("----------------------------------");
+                writer.WriteLine("");
+            }
 
-            MessageBox.Show("Collection Submitted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // 3. THEN SHOW + CLEAR
+            MessageBox.Show("Collection submitted successfully!\nYour collection status is Pending.");
 
-            // Clear form
             cmbWasteType.SelectedIndex = -1;
-            nubWeight.Value = 0; 
-            picProof.Image = null;
+            nudWeight.Value = 1;
+            dtpCollectionDate.Value = DateTime.Today;
+            lblProofPath.Text = "No proof selected";
             selectedImagePath = "";
+
+
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -69,6 +94,26 @@ namespace Dev_Dynamo_Project
             frmResetPassword ResetPassword = new frmResetPassword();
             ResetPassword.Show();
             this.Hide();
+        }
+
+        private void frmSMME_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            frmRecycling home = new frmRecycling();
+            home.Show();
+            this.Hide();
+        }
+
+        private void btnMy_Click(object sender, EventArgs e)
+        {
+            frmsmmedashboard dashboard=new frmsmmedashboard();
+            dashboard.Show();
+            this.Hide();
+
         }
     }
 }

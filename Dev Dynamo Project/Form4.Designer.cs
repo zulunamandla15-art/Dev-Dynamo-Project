@@ -65,7 +65,7 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(376, 298);
+            this.lblUsername.Location = new System.Drawing.Point(346, 293);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(117, 25);
             this.lblUsername.TabIndex = 3;

@@ -146,6 +146,7 @@
             this.radMunicipality.TabStop = true;
             this.radMunicipality.Text = "Municipality";
             this.radMunicipality.UseVisualStyleBackColor = true;
+            this.radMunicipality.CheckedChanged += new System.EventHandler(this.radMunicipality_CheckedChanged);
             // 
             // frmLogin
             // 

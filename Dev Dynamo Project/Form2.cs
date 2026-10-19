@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System;
 using System.IO;
 
 namespace Dev_Dynamo_Project
@@ -34,25 +35,21 @@ namespace Dev_Dynamo_Project
 
 
             string vehicle;
-            if (radVehicleYes.Checked)
+            if (!radVehicleYes.Checked&& !radVehicleNo.Checked)
             {
-                vehicle = "Yes";
+                MessageBox.Show("Select if you have a Vehicle or not");
+                return;
             }
-            else
-            {
-                vehicle = "No";
-            }
+            
 
             //  Checking if the applicant has License or not
             string License;
-            if (radLicenseYes.Checked)
+            if (!radLicenseYes.Checked && !radLicenseNo.Checked)
             {
-                License = "Yes";
+                MessageBox.Show("Select if you have a License or not");
+                return;
             }
-            else
-            {
-                License = "No";
-            }
+           
 
             //Checking if the user left spaces on each of these required field then pops a message if one of these was left blank
             if (fullName == "" ||
@@ -64,6 +61,7 @@ namespace Dev_Dynamo_Project
                 password == "" ||
                 confirmPassword == "" ||
                 years == 0)
+                
 
 
             {
@@ -72,8 +70,10 @@ namespace Dev_Dynamo_Project
             }
             //Opening a folder to save all applicants information
 
-            StreamWriter writer = new StreamWriter("SMME_Registration.txt ", true);
-            using (writer)
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            string filePath = Path.Combine(desktopPath,"Applications.txt");
+            using (StreamWriter writer = new StreamWriter(filePath, true)) 
             {
                 //Saving application information to that "SMME_Registration" folder
 
@@ -83,9 +83,9 @@ namespace Dev_Dynamo_Project
                 writer.WriteLine("Full Names:\t\t\t" + fullName);
                 writer.WriteLine("ID Number:\t\t\t" + idNumber);
                 writer.WriteLine("Year Born:\t\t\t" + dateTimePicker1.Text);
-                writer.WriteLine("Email Address:\t\t" + email);
-                writer.WriteLine("Cellphone Number:\t" + cellphone);
-                writer.WriteLine("Business Name:\t\t" + businessName);
+                writer.WriteLine("Email Address:\t\t\t" + email);
+                writer.WriteLine("Cellphone Number:\t\t\t" + cellphone);
+                writer.WriteLine("Business Name:\t\t\t" + businessName);
                 writer.WriteLine("Username\t\t\t" + username);
                 writer.WriteLine("Password\t\t\t" + password);
 
@@ -375,33 +375,35 @@ namespace Dev_Dynamo_Project
         private void radVehicleYes_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (radVehicleYes.Checked)
+            if (!radVehicleYes.Checked)
             {
-                radVehicleNo.Checked = false;
+                MessageBox.Show("Please select f you have a Vehicle or not");
             }
+
+
         }
 
         private void radVehicleNo_CheckedChanged(object sender, EventArgs e)
         {
-            if (radVehicleNo.Checked)
+            if (!radVehicleNo.Checked)
             {
-                radVehicleYes.Checked = false;
+                MessageBox.Show("Please select if you have a Vehicle or not");
             }
         }
 
         private void radLicenseYes_CheckedChanged(object sender, EventArgs e)
         {
-            if (radLicenseYes.Checked)
+            if (!radLicenseYes.Checked)
             {
-                radLicenseNo.Checked = false;
+                MessageBox.Show("Please select if you have a license or not");
             }
         }
 
         private void radLicenseNo_CheckedChanged(object sender, EventArgs e)
         {
-            if (radLicenseNo.Checked)
+            if (!radLicenseNo.Checked)
             {
-                radLicenseYes.Checked = false;
+                MessageBox.Show("Please select if you have a license or not");
             }
         }
 
@@ -476,6 +478,11 @@ namespace Dev_Dynamo_Project
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void grpVehicle_Enter(object sender, EventArgs e)
+        {
+           
         }
     }
     

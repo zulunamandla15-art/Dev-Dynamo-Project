@@ -29,18 +29,31 @@
         private void InitializeComponent()
         {
             this.btnClick = new System.Windows.Forms.Button();
+            this.btnLogIn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnClick
             // 
             this.btnClick.BackColor = System.Drawing.Color.ForestGreen;
-            this.btnClick.Location = new System.Drawing.Point(1207, 744);
+            this.btnClick.Location = new System.Drawing.Point(1266, 757);
             this.btnClick.Name = "btnClick";
             this.btnClick.Size = new System.Drawing.Size(190, 60);
             this.btnClick.TabIndex = 0;
-            this.btnClick.Text = "Click to Procced";
+            this.btnClick.Text = "Register";
             this.btnClick.UseVisualStyleBackColor = false;
             this.btnClick.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnLogIn
+            // 
+            this.btnLogIn.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.btnLogIn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnLogIn.Location = new System.Drawing.Point(58, 744);
+            this.btnLogIn.Name = "btnLogIn";
+            this.btnLogIn.Size = new System.Drawing.Size(195, 56);
+            this.btnLogIn.TabIndex = 1;
+            this.btnLogIn.Text = "Log in";
+            this.btnLogIn.UseVisualStyleBackColor = false;
+            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // frmRecycling
             // 
@@ -49,6 +62,7 @@
             this.BackColor = System.Drawing.Color.PaleGreen;
             this.BackgroundImage = global::Dev_Dynamo_Project.Properties.Resources.WhatsApp_Image_2026_09_30_at_7_50_52_PM;
             this.ClientSize = new System.Drawing.Size(1600, 840);
+            this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.btnClick);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -63,6 +77,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnClick;
+        private System.Windows.Forms.Button btnLogIn;
     }
 }
 

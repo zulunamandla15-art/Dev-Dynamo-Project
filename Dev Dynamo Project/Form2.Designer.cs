@@ -65,7 +65,7 @@
             // lblFullNames
             // 
             this.lblFullNames.AutoSize = true;
-            this.lblFullNames.Location = new System.Drawing.Point(58, 43);
+            this.lblFullNames.Location = new System.Drawing.Point(63, 40);
             this.lblFullNames.Name = "lblFullNames";
             this.lblFullNames.Size = new System.Drawing.Size(127, 25);
             this.lblFullNames.TabIndex = 0;
@@ -267,6 +267,7 @@
             this.grpVehicle.TabIndex = 22;
             this.grpVehicle.TabStop = false;
             this.grpVehicle.Text = "Do you have a Vehicle?";
+            this.grpVehicle.Enter += new System.EventHandler(this.grpVehicle_Enter);
             // 
             // radVehicleNo
             // 
@@ -332,7 +333,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1300, 763);
+            this.ClientSize = new System.Drawing.Size(1439, 763);
             this.Controls.Add(this.grpLicense);
             this.Controls.Add(this.grpVehicle);
             this.Controls.Add(this.txtConfirm);
