@@ -29,43 +29,37 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmResetPassword));
-            this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.lblCurrent = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.lblConfirmNewPass = new System.Windows.Forms.Label();
+            this.txtNewPassword = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Location = new System.Drawing.Point(562, 368);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(216, 30);
-            this.txtUsername.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(562, 439);
+            this.txtPassword.Location = new System.Drawing.Point(562, 402);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(216, 30);
+            this.txtPassword.Size = new System.Drawing.Size(274, 30);
             this.txtPassword.TabIndex = 1;
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(346, 444);
+            this.lblPassword.Location = new System.Drawing.Point(243, 407);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(161, 25);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "New Password:";
+            this.lblPassword.Click += new System.EventHandler(this.lblPassword_Click);
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(346, 293);
+            this.lblUsername.Location = new System.Drawing.Point(243, 293);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(117, 25);
             this.lblUsername.TabIndex = 3;
@@ -91,22 +85,30 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // lblCurrent
+            // txtUsername
             // 
-            this.lblCurrent.AutoSize = true;
-            this.lblCurrent.Location = new System.Drawing.Point(346, 373);
-            this.lblCurrent.Name = "lblCurrent";
-            this.lblCurrent.Size = new System.Drawing.Size(191, 25);
-            this.lblCurrent.TabIndex = 6;
-            this.lblCurrent.Text = "Current Password:";
+            this.txtUsername.Location = new System.Drawing.Point(562, 293);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(274, 30);
+            this.txtUsername.TabIndex = 7;
+            this.txtUsername.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // textBox1
+            // lblConfirmNewPass
             // 
-            this.textBox1.Location = new System.Drawing.Point(562, 293);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(216, 30);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.lblConfirmNewPass.AutoSize = true;
+            this.lblConfirmNewPass.Location = new System.Drawing.Point(232, 507);
+            this.lblConfirmNewPass.Name = "lblConfirmNewPass";
+            this.lblConfirmNewPass.Size = new System.Drawing.Size(242, 25);
+            this.lblConfirmNewPass.TabIndex = 8;
+            this.lblConfirmNewPass.Text = "Confirm New Password:";
+            this.lblConfirmNewPass.Click += new System.EventHandler(this.lblConfirmNewPass_Click);
+            // 
+            // txtNewPassword
+            // 
+            this.txtNewPassword.Location = new System.Drawing.Point(562, 509);
+            this.txtNewPassword.Name = "txtNewPassword";
+            this.txtNewPassword.Size = new System.Drawing.Size(274, 30);
+            this.txtNewPassword.TabIndex = 9;
             // 
             // frmResetPassword
             // 
@@ -114,14 +116,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1300, 703);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.lblCurrent);
+            this.Controls.Add(this.txtNewPassword);
+            this.Controls.Add(this.lblConfirmNewPass);
+            this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUsername);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmResetPassword";
@@ -132,14 +134,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Label lblCurrent;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Label lblConfirmNewPass;
+        private System.Windows.Forms.TextBox txtNewPassword;
     }
 }

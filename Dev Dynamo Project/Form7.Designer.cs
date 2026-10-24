@@ -40,6 +40,7 @@
             this.lblCollection = new System.Windows.Forms.Label();
             this.lblPayment = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.btnProcced = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblWasteInfo
@@ -142,12 +143,23 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // btnProcced
+            // 
+            this.btnProcced.Location = new System.Drawing.Point(1401, 636);
+            this.btnProcced.Name = "btnProcced";
+            this.btnProcced.Size = new System.Drawing.Size(140, 59);
+            this.btnProcced.TabIndex = 11;
+            this.btnProcced.Text = "Procced";
+            this.btnProcced.UseVisualStyleBackColor = true;
+            this.btnProcced.Click += new System.EventHandler(this.btnProcced_Click);
+            // 
             // frmsmmedashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1553, 794);
+            this.Controls.Add(this.btnProcced);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.lblPayment);
             this.Controls.Add(this.lblCollection);
@@ -182,5 +194,6 @@
         private System.Windows.Forms.Label lblCollection;
         private System.Windows.Forms.Label lblPayment;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnProcced;
     }
 }

@@ -22,6 +22,13 @@ namespace Dev_Dynamo_Project
             // 1. DECLARE what user typed on reset form
             string newUsername = txtUsername.Text.Trim();
             string newPassword = txtPassword.Text.Trim();
+            if (txtPassword.Text != txtNewPassword.Text)
+            {
+                MessageBox.Show("Passwords do not match");
+                txtNewPassword.Clear();
+                txtNewPassword.Focus();
+                return;
+            }
 
             // 2. Check empty
             if (newUsername == "" || newPassword == "")
@@ -50,7 +57,15 @@ namespace Dev_Dynamo_Project
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-           string CurrentPassword = txtPassword.Text.Trim();
+        }
+
+        private void lblPassword_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblConfirmNewPass_Click(object sender, EventArgs e)
+        {
         }
     }
 }

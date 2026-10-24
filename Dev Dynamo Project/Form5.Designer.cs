@@ -42,6 +42,7 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnMy = new System.Windows.Forms.Button();
+            this.lblProofPath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picProof)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeight)).BeginInit();
             this.SuspendLayout();
@@ -168,12 +169,22 @@
             this.btnMy.UseVisualStyleBackColor = true;
             this.btnMy.Click += new System.EventHandler(this.btnMy_Click);
             // 
+            // lblProofPath
+            // 
+            this.lblProofPath.AutoSize = true;
+            this.lblProofPath.Location = new System.Drawing.Point(1048, 480);
+            this.lblProofPath.Name = "lblProofPath";
+            this.lblProofPath.Size = new System.Drawing.Size(70, 25);
+            this.lblProofPath.TabIndex = 14;
+            this.lblProofPath.Text = "label1";
+            // 
             // frmSMME
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1596, 703);
+            this.Controls.Add(this.lblProofPath);
             this.Controls.Add(this.btnMy);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnBack);
@@ -214,5 +225,6 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnMy;
+        private System.Windows.Forms.Label lblProofPath;
     }
 }

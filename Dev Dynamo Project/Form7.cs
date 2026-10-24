@@ -20,9 +20,9 @@ namespace Dev_Dynamo_Project
 
         private void frmsmmedashboard_Load(object sender, EventArgs e)
         {
-            string filePath = Path.Combine(
+        string filePath = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-        "SMMECollections.txt");
+        "Collections.txt");
 
             if (!File.Exists(filePath))
             {
@@ -51,13 +51,20 @@ namespace Dev_Dynamo_Project
                     lblCollectionStatus.ForeColor = Color.Orange;
                 else
                     lblCollectionStatus.ForeColor = Color.Green;
-            }
+            } 
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
             frmRecycling recycling = new frmRecycling();
             recycling.Show();
+            this.Hide();
+        }
+
+        private void btnProcced_Click(object sender, EventArgs e)
+        {
+            frmpay pay = new frmpay();
+            pay.Show();
             this.Hide();
         }
     }

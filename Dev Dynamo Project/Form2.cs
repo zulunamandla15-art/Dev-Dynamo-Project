@@ -68,15 +68,14 @@ namespace Dev_Dynamo_Project
                 MessageBox.Show("Please fill in all required fileds!!!!");
                 return;
             }
-            //Opening a folder to save all applicants information
+            
 
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-            string filePath = Path.Combine(desktopPath,"Applications.txt");
+            string filePath = Path.Combine(desktopPath,"Applicants Details.txt");
             using (StreamWriter writer = new StreamWriter(filePath, true)) 
             {
-                //Saving application information to that "SMME_Registration" folder
-
+                
                 writer.WriteLine("==================================================");
                 writer.WriteLine("Applicant");
                 writer.WriteLine("===================================================");
@@ -90,21 +89,18 @@ namespace Dev_Dynamo_Project
                 writer.WriteLine("Password\t\t\t" + password);
 
 
-
-                // Saving  the username & password so login can use it//
-
                 if (txtPassword.Text != txtConfirm.Text)
                 {
                     MessageBox.Show("Passwords don't match!");
                     return;
                 }
-                //storing username
+               
                 Userstore.Username = txtUsername.Text;
                 Userstore.Password = txtPassword.Text;
 
                 MessageBox.Show("You've Sucessfully Registered");
 
-                // 2. OLD CODE - this moves to next page - KEEP IT
+                
                 frmLogin Login = new frmLogin();
                 Login.Show();
                 this.Hide();
@@ -149,8 +145,6 @@ namespace Dev_Dynamo_Project
 
         private void txtIDNumber_Validating(object sender, CancelEventArgs e)
         {
-
-            //Checking if is it numbers only entered or not nif not gives warning soon as tries to move to the next button//
             foreach (char c in txtIDNumber.Text)
             {
                 if (!char.IsDigit(c))
@@ -166,7 +160,6 @@ namespace Dev_Dynamo_Project
                 }
             }
 
-            //Checking if the user entered exactly 13 digit needed or more or less//
             string idNumber = txtIDNumber.Text.Trim();
             if (txtIDNumber.Text.Length != 13)
             {
@@ -483,6 +476,11 @@ namespace Dev_Dynamo_Project
         private void grpVehicle_Enter(object sender, EventArgs e)
         {
            
+        }
+
+        private void lblPassword_Click(object sender, EventArgs e)
+        {
+
         }
     }
     

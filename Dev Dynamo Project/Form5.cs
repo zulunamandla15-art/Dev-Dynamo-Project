@@ -13,7 +13,7 @@ namespace Dev_Dynamo_Project
 {
     public partial class frmSMME : Form
     {
-        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "SMMECollections.txt");
+        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Collections.txt");
         string selectedImagePath = " ";
         public frmSMME()
         {
@@ -28,7 +28,7 @@ namespace Dev_Dynamo_Project
             if (open.ShowDialog() == DialogResult.OK)
             {
                 selectedImagePath = open.FileName;
-                picProof.ImageLocation = selectedImagePath; // show it on SMME form
+                picProof.ImageLocation = selectedImagePath; 
             }
         }
 
@@ -53,7 +53,7 @@ namespace Dev_Dynamo_Project
                 return;
             }
 
-            // 1. DECLARE FIRST
+           
             string submissionID = Guid.NewGuid().ToString();
             string wasteType = cmbWasteType.Text.Trim();
             double weight = (double)nudWeight.Value;
@@ -76,7 +76,7 @@ namespace Dev_Dynamo_Project
                 writer.WriteLine("");
             }
 
-            // 3. THEN SHOW + CLEAR
+          
             MessageBox.Show("Collection submitted successfully!\nYour collection status is Pending.");
 
             cmbWasteType.SelectedIndex = -1;

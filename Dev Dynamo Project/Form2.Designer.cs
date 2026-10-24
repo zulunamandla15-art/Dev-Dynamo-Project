@@ -142,6 +142,7 @@
             this.lblPassword.Size = new System.Drawing.Size(113, 25);
             this.lblPassword.TabIndex = 8;
             this.lblPassword.Text = "Password:";
+            this.lblPassword.Click += new System.EventHandler(this.lblPassword_Click);
             // 
             // btnBack
             // 
@@ -159,7 +160,7 @@
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(146, 46);
             this.btnRegister.TabIndex = 10;
-            this.btnRegister.Text = "Registration";
+            this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 

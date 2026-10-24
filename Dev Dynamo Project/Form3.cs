@@ -26,44 +26,72 @@ namespace Dev_Dynamo_Project
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Applications.txt");
-            if (!File.Exists(filePath))
+            if (!radMunicipality.Checked && !radSMME.Checked)
             {
-                MessageBox.Show("No user yet.Register first!");
-            }
-            // 1. First check username and password
-            if (txtUsername.Text != Userstore.Username )
-            {
-                MessageBox.Show("Username does not match!");
-                return;
-            }
-            if(txtPassword.Text != Userstore.Password)
-            {
-                MessageBox.Show("Password does not Match!");
+                MessageBox.Show("please select role");
                 return;
             }
 
-            // 2. If password correct, check which role they selected
+            if (radMunicipality.Checked)
+            {
+                if (txtUsername.Text == "Municipality" && txtPassword.Text == "admin123")
+                {
+                    MessageBox.Show("Municipality Login Successful");
+                    frmMunicipality municipality = new frmMunicipality();
+                    municipality.Show();
+                    this.Hide();
+                }
+                return;
+            }
+
             if (radSMME.Checked)
+             
             {
-                frmSMME smme = new frmSMME();
-                smme.Show();
-                this.Hide();
-            }
-            else if (radMunicipality.Checked)
-            {
-                // change Form1 to whatever your Municipality dashboard is called
-                frmMunicipality Municipality = new frmMunicipality();
-                Municipality.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Please select if you are SME Owner or Municipality");
-            }
+                
 
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string filePath = Path.Combine(desktopPath, "Applicants Details.txt");
+                string[] lines = File.ReadAllLines(filePath);
+
+                string savedUsername = "";
+                string savedPassword = "";
+
+                foreach (string line in lines)
+                {
+                    if (line.StartsWith("Username"))
+                    {
+                        savedUsername = line.Replace("Username", "").Trim();
+                    }
+
+                    if (line.StartsWith("Password"))
+                    {
+                        savedPassword = line.Replace("Password", "").Trim();
+
+                        if (txtUsername.Text == savedUsername &&
+                            txtPassword.Text == savedPassword)
+                        {
+                            MessageBox.Show("Login Successful");
+                            break;
+                        }
+
+                       
+                    }
+                }
+
+                if (txtUsername.Text != savedUsername || txtPassword.Text != savedPassword)
+                {
+                    MessageBox.Show("Invalid Username or Password");
+                    return;
+                }
+
+                // 2. If password correct, check which role they selected
+
+                frmSMME SMME = new frmSMME();
+                SMME.Show();
+                this.Hide();
+            }
         }
-
+        
         private void btnBack_Click(object sender, EventArgs e)
         {
             frmRegistration Registration = new frmRegistration();
@@ -73,20 +101,23 @@ namespace Dev_Dynamo_Project
 
         private void radMunicipality_CheckedChanged(object sender, EventArgs e)
         {
-            if (radMunicipality.Checked)
-            {
-                if (txtUsername.Text == "municipality" &&
-                    txtPassword.Text == "admin123")
-                {
-                    frmMunicipality municipality = new frmMunicipality();
-                    municipality.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Invalid municipality login.");
-                }
-            }
+           
+
+              
+        }
+            
+
+            
+           
+        
+
+        private void radSMME_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

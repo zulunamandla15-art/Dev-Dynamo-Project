@@ -4,73 +4,89 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dev_Dynamo_Project
 {
-    public partial class frmMunicipality : Form
+    public partial class frmApproval : Form
     {
-        public frmMunicipality()
+        public frmApproval()
         {
             InitializeComponent();
         }
 
-        private void frmMunicipality_Load(object sender, EventArgs e)
+      
+        private async void btnNotification_Click(object sender, EventArgs e)
         {
-            // Show all collections submitted by SMMEs
-            dgvCollections.DataSource = null;
-            dgvCollections.DataSource = DataStore.AllCollections;
+            string name = txtBusiness.Text;
+            string email = txtEmail.Text;
+            string business = txtBusiness.Text;
+            string reference = "MUN-" + DateTime.Now.ToString("yyyyMMdd-HHmm");
 
-            // Optional: make columns look nice
-            dgvCollections.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "Please enter email";
+                return;
+            }
+
+            lblStatus.ForeColor = Color.Blue;
+            lblStatus.Text = "Sending to " + email + "...";
+
+            await SendConfirmationEmail(name, email, business, reference);
         }
 
-        private void dgvCollections_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async Task SendConfirmationEmail(string name, string email, string business, string reference)
         {
-            // When municipality clicks a row, show its proof
-            if (e.RowIndex >= 0)
+            try
             {
-                string path = DataStore.AllCollections[e.RowIndex].ProofImagePath;
-                if (System.IO.File.Exists(path))
-                {
-                    picProofView.ImageLocation = path; // SAME proof SMME uploaded
-                }
+                var fromAddress = new MailAddress("thabilemthethwa244@gmail.com", "Municipality SMME");
+                var toAddress = new MailAddress(email); 
+
+                string subject = "Application Received - " + reference;
+                string body = "Dear " + name + ",\n\n" + "Thank you for submitting your application to the EThekwini Municipality - SMME Development Unit.\n\n" +
+                    "We hereby confirm receipt of your application for :\n" +
+                    "Business Name:" + business + "\n" +
+                    "Reference Number:" + reference + "\n" +
+                    "Date Received:" + DateTime.Now.ToString("dd MMMM yyyy HH:mm") + "\n\n" +
+                   " Your application is currently under review. Our team will assess your submissionand communicate the outcome within 5-7 working days.\n\n" +
+                   "Please retain your reference number for all future enquiries.\n\n" +
+                   "For assistance, contact: smme.support@durban.gov.za | 031 311 1111\n\n" +
+                   "Yours faithfully,\n" +
+                   "Municipality SMME Support Team\n" +
+                   "EThekwini Municipality\n" +
+                   "Durban, KwaZulu-Natal";
+
+                var message = new MailMessage(fromAddress, toAddress);
+                message.Subject = subject;
+                message.Body = body;
+
+                var client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.Credentials = new NetworkCredential("thabilemthethwa244@gmail.com", "mmuunseukheb dpwl");
+
+                await client.SendMailAsync(message);
+
+                lblStatus.ForeColor = Color.Green;
+                lblStatus.Text = "SUCCESS! Popped up on " + email;
+                MessageBox.Show("SUCCESS! Email popped up on " + email + "\nCheck your phone now!");
+            }
+            catch (Exception ex)
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "Error: " + ex.Message;
+                MessageBox.Show(ex.Message + "\n\nIf on school WiFi, use phone hotspot");
             }
         }
 
-        private void dgvCollections_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void frmApproval_Load(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                string path = DataStore.AllCollections[e.RowIndex].ProofImagePath;
-                if (System.IO.File.Exists(path))
-                {
-                    picProofView.ImageLocation = path; // SAME proof SMME uploaded
-                    picProofView.SizeMode = PictureBoxSizeMode.Zoom;
-                }
-            }
-        }
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            frmSMME SMME = new frmSMME();
-            SMME.Show();
-            this.Hide();
-        }
-
-        private void dgvCollections_CellClick_2(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                string path = DataStore.AllCollections[e.RowIndex].ProofImagePath;
-                if (System.IO.File.Exists(path))
-                {
-                    picProofView.ImageLocation = path; // SAME proof SMME uploaded
-                    picProofView.SizeMode = PictureBoxSizeMode.Zoom;
-                }
-            }
         }
     }
+    
 }
