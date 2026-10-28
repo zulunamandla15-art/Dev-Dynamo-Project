@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System;
+
 using System.IO;
 
 namespace Dev_Dynamo_Project
@@ -34,7 +34,7 @@ namespace Dev_Dynamo_Project
             int years = (int)nubHowlong.Value; //  NumericUpDown with 0
 
 
-            string vehicle;
+            
             if (!radVehicleYes.Checked&& !radVehicleNo.Checked)
             {
                 MessageBox.Show("Select if you have a Vehicle or not");
@@ -43,7 +43,7 @@ namespace Dev_Dynamo_Project
             
 
             //  Checking if the applicant has License or not
-            string License;
+            
             if (!radLicenseYes.Checked && !radLicenseNo.Checked)
             {
                 MessageBox.Show("Select if you have a License or not");

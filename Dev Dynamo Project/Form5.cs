@@ -13,7 +13,7 @@ namespace Dev_Dynamo_Project
 {
     public partial class frmSMME : Form
     {
-        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Collections.txt");
+        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Collected Waste.txt");
         string selectedImagePath = " ";
         public frmSMME()
         {
@@ -82,7 +82,7 @@ namespace Dev_Dynamo_Project
             cmbWasteType.SelectedIndex = -1;
             nudWeight.Value = 1;
             dtpCollectionDate.Value = DateTime.Today;
-            lblProofPath.Text = "No proof selected";
+            
             selectedImagePath = "";
 
 
@@ -113,6 +113,11 @@ namespace Dev_Dynamo_Project
             frmsmmedashboard dashboard=new frmsmmedashboard();
             dashboard.Show();
             this.Hide();
+
+        }
+
+        private void lblProofPath_Click(object sender, EventArgs e)
+        {
 
         }
     }

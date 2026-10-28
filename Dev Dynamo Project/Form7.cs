@@ -20,9 +20,7 @@ namespace Dev_Dynamo_Project
 
         private void frmsmmedashboard_Load(object sender, EventArgs e)
         {
-        string filePath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-        "Collections.txt");
+        string filePath = @"C:\Users\Makro\OneDrive\Desktop\Collected Waste.txt";
 
             if (!File.Exists(filePath))
             {
@@ -30,28 +28,41 @@ namespace Dev_Dynamo_Project
                 return;
             }
 
-            // Get the last line that has data (the last submission)
-            string lastRecord = File.ReadAllLines(filePath)
-                                    .Where(line => line.Contains("|"))
-                                    .LastOrDefault();
+            string[] allLines = File.ReadAllLines(filePath);
 
-            if (lastRecord != null)
+            string date = "", waste = "", weight = "", status = "", payment = "";
+
+            foreach (string line in allLines)
             {
-                string[] p = lastRecord.Split('|');
-                // p[0]=ID, p[1]=WasteType, p[2]=Weight, p[3]=Date, p[4]=Proof, p[5]=CollectionStatus, p[6]=PaymentStatus
+                if (line.StartsWith("Date Collected"))
+                    date = line.Split(':')[1].Trim();
+                else if (line.StartsWith("Waste Type"))
+                    waste = line.Split(':')[1].Trim();
+                else if (line.StartsWith("Weight"))
+                    weight = line.Split(':')[1].Trim();
+                else if (line.StartsWith("Status"))
+                    status = line.Split(':')[1].Trim();
+                else if (line.StartsWith("Payment"))
+                    payment = line.Split(':')[1].Trim();
+            }
 
-                lblWasteInfo.Text = $"You collected {p[1]} waste";
-                lblDateInfo.Text = $"On {p[3]}";
-                lblWeightInfo.Text = $"Weighing {p[2]} KG";
-                lblCollectionStatus.Text = $"Collection Status: {p[5]}"; // Pending
-                lblPaymentStatus.Text = $"Payment Status: {p[6]}"; // In Progress / Unpaid
+            if (waste != "")
+            {
+                lblWasteInfo.Text = $"You collected {waste} waste";
+                lblDateInfo.Text = $"On {date}";
+                lblWeightInfo.Text = $"Weighing {weight}";
+                lblCollectionStatus.Text = $"Collection Status: {status}";
+                lblPaymentStatus.Text = $"Payment Status: {payment}";
 
-                // Make Pending orange, Approved green
-                if (p[5] == "Pending")
+                if (status.Contains("Pending"))
                     lblCollectionStatus.ForeColor = Color.Orange;
                 else
                     lblCollectionStatus.ForeColor = Color.Green;
-            } 
+            }
+            else
+            {
+                lblWasteInfo.Text = "No collections found yet.";
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

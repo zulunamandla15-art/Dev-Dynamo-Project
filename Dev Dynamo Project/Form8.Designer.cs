@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMunicipality));
             this.btnApplicationDetails = new System.Windows.Forms.Button();
             this.btnCollectionDetails = new System.Windows.Forms.Button();
-            this.btnPayments = new System.Windows.Forms.Button();
             this.lstOutput = new System.Windows.Forms.ListBox();
             this.btnApprove = new System.Windows.Forms.Button();
             this.btnReject = new System.Windows.Forms.Button();
@@ -53,24 +52,13 @@
             // btnCollectionDetails
             // 
             this.btnCollectionDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnCollectionDetails.Location = new System.Drawing.Point(384, 21);
+            this.btnCollectionDetails.Location = new System.Drawing.Point(681, 12);
             this.btnCollectionDetails.Name = "btnCollectionDetails";
             this.btnCollectionDetails.Size = new System.Drawing.Size(261, 76);
             this.btnCollectionDetails.TabIndex = 3;
             this.btnCollectionDetails.Text = "Collection Details";
             this.btnCollectionDetails.UseVisualStyleBackColor = false;
             this.btnCollectionDetails.Click += new System.EventHandler(this.btnCollectionDetails_Click);
-            // 
-            // btnPayments
-            // 
-            this.btnPayments.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnPayments.Location = new System.Drawing.Point(718, 21);
-            this.btnPayments.Name = "btnPayments";
-            this.btnPayments.Size = new System.Drawing.Size(243, 76);
-            this.btnPayments.TabIndex = 4;
-            this.btnPayments.Text = "Payments";
-            this.btnPayments.UseVisualStyleBackColor = false;
-            this.btnPayments.Click += new System.EventHandler(this.btnPayments_Click);
             // 
             // lstOutput
             // 
@@ -85,7 +73,7 @@
             // btnApprove
             // 
             this.btnApprove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnApprove.Location = new System.Drawing.Point(121, 141);
+            this.btnApprove.Location = new System.Drawing.Point(347, 141);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Size = new System.Drawing.Size(132, 44);
             this.btnApprove.TabIndex = 6;
@@ -96,7 +84,7 @@
             // btnReject
             // 
             this.btnReject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnReject.Location = new System.Drawing.Point(828, 141);
+            this.btnReject.Location = new System.Drawing.Point(550, 141);
             this.btnReject.Name = "btnReject";
             this.btnReject.Size = new System.Drawing.Size(133, 44);
             this.btnReject.TabIndex = 7;
@@ -107,7 +95,7 @@
             // btnEmail
             // 
             this.btnEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnEmail.Location = new System.Drawing.Point(1160, 596);
+            this.btnEmail.Location = new System.Drawing.Point(1182, 640);
             this.btnEmail.Name = "btnEmail";
             this.btnEmail.Size = new System.Drawing.Size(167, 51);
             this.btnEmail.TabIndex = 8;
@@ -137,7 +125,6 @@
             this.Controls.Add(this.btnReject);
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.lstOutput);
-            this.Controls.Add(this.btnPayments);
             this.Controls.Add(this.btnCollectionDetails);
             this.Controls.Add(this.btnApplicationDetails);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -150,7 +137,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnPayments;
         private System.Windows.Forms.Button btnCollectionDetails;
         private System.Windows.Forms.Button btnApplicationDetails;
         private System.Windows.Forms.ListBox lstOutput;

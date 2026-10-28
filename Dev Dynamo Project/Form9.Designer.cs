@@ -33,14 +33,11 @@
             this.lblAccountHolder = new System.Windows.Forms.Label();
             this.lblAccountNumber = new System.Windows.Forms.Label();
             this.lblAccountType = new System.Windows.Forms.Label();
-            this.lblBranchCode = new System.Windows.Forms.Label();
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.txtAccountHolder = new System.Windows.Forms.TextBox();
             this.txtAccountNumber = new System.Windows.Forms.TextBox();
             this.cmbAccountType = new System.Windows.Forms.ComboBox();
-            this.txtBranchCode = new System.Windows.Forms.TextBox();
             this.btnSaveBankDetails = new System.Windows.Forms.Button();
-            this.lblTittle = new System.Windows.Forms.Label();
             this.lblBank = new System.Windows.Forms.Label();
             this.lblPaymentStatus = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
@@ -57,7 +54,7 @@
             // lblAccountHolder
             // 
             this.lblAccountHolder.AutoSize = true;
-            this.lblAccountHolder.Location = new System.Drawing.Point(435, 224);
+            this.lblAccountHolder.Location = new System.Drawing.Point(447, 224);
             this.lblAccountHolder.Name = "lblAccountHolder";
             this.lblAccountHolder.Size = new System.Drawing.Size(229, 25);
             this.lblAccountHolder.TabIndex = 2;
@@ -75,81 +72,62 @@
             // lblAccountType
             // 
             this.lblAccountType.AutoSize = true;
-            this.lblAccountType.Location = new System.Drawing.Point(447, 377);
+            this.lblAccountType.Location = new System.Drawing.Point(447, 351);
             this.lblAccountType.Name = "lblAccountType";
             this.lblAccountType.Size = new System.Drawing.Size(153, 25);
             this.lblAccountType.TabIndex = 4;
             this.lblAccountType.Text = "Account Type:";
             // 
-            // lblBranchCode
-            // 
-            this.lblBranchCode.AutoSize = true;
-            this.lblBranchCode.Location = new System.Drawing.Point(447, 461);
-            this.lblBranchCode.Name = "lblBranchCode";
-            this.lblBranchCode.Size = new System.Drawing.Size(145, 25);
-            this.lblBranchCode.TabIndex = 5;
-            this.lblBranchCode.Text = "Branch Code:";
-            // 
             // cmbBank
             // 
             this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(949, 149);
+            this.cmbBank.Location = new System.Drawing.Point(949, 154);
             this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(121, 33);
+            this.cmbBank.Size = new System.Drawing.Size(270, 33);
             this.cmbBank.TabIndex = 8;
+            this.cmbBank.SelectedIndexChanged += new System.EventHandler(this.cmbBank_SelectedIndexChanged);
+            this.cmbBank.Validating += new System.ComponentModel.CancelEventHandler(this.cmbBank_Validating_1);
             // 
             // txtAccountHolder
             // 
             this.txtAccountHolder.Location = new System.Drawing.Point(949, 224);
             this.txtAccountHolder.Name = "txtAccountHolder";
-            this.txtAccountHolder.Size = new System.Drawing.Size(100, 30);
+            this.txtAccountHolder.Size = new System.Drawing.Size(270, 30);
             this.txtAccountHolder.TabIndex = 9;
+            this.txtAccountHolder.Validating += new System.ComponentModel.CancelEventHandler(this.txtAccountHolder_Validating_1);
             // 
             // txtAccountNumber
             // 
-            this.txtAccountNumber.Location = new System.Drawing.Point(959, 288);
+            this.txtAccountNumber.Location = new System.Drawing.Point(949, 288);
             this.txtAccountNumber.Name = "txtAccountNumber";
-            this.txtAccountNumber.Size = new System.Drawing.Size(100, 30);
+            this.txtAccountNumber.Size = new System.Drawing.Size(270, 30);
             this.txtAccountNumber.TabIndex = 10;
+            this.txtAccountNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txtAccountNumber_Validating);
             // 
             // cmbAccountType
             // 
             this.cmbAccountType.FormattingEnabled = true;
-            this.cmbAccountType.Location = new System.Drawing.Point(949, 357);
+            this.cmbAccountType.Location = new System.Drawing.Point(949, 348);
             this.cmbAccountType.Name = "cmbAccountType";
-            this.cmbAccountType.Size = new System.Drawing.Size(121, 33);
+            this.cmbAccountType.Size = new System.Drawing.Size(270, 33);
             this.cmbAccountType.TabIndex = 11;
-            // 
-            // txtBranchCode
-            // 
-            this.txtBranchCode.Location = new System.Drawing.Point(959, 436);
-            this.txtBranchCode.Name = "txtBranchCode";
-            this.txtBranchCode.Size = new System.Drawing.Size(100, 30);
-            this.txtBranchCode.TabIndex = 12;
+            this.cmbAccountType.Validating += new System.ComponentModel.CancelEventHandler(this.cmbAccountType_Validating);
             // 
             // btnSaveBankDetails
             // 
-            this.btnSaveBankDetails.Location = new System.Drawing.Point(271, 538);
+            this.btnSaveBankDetails.BackColor = System.Drawing.Color.Silver;
+            this.btnSaveBankDetails.Location = new System.Drawing.Point(279, 628);
             this.btnSaveBankDetails.Name = "btnSaveBankDetails";
             this.btnSaveBankDetails.Size = new System.Drawing.Size(237, 63);
             this.btnSaveBankDetails.TabIndex = 13;
             this.btnSaveBankDetails.Text = "Save Bank Details";
-            this.btnSaveBankDetails.UseVisualStyleBackColor = true;
+            this.btnSaveBankDetails.UseVisualStyleBackColor = false;
             this.btnSaveBankDetails.Click += new System.EventHandler(this.btnSaveBankDetails_Click);
-            // 
-            // lblTittle
-            // 
-            this.lblTittle.AutoSize = true;
-            this.lblTittle.Location = new System.Drawing.Point(366, 38);
-            this.lblTittle.Name = "lblTittle";
-            this.lblTittle.Size = new System.Drawing.Size(168, 25);
-            this.lblTittle.TabIndex = 14;
-            this.lblTittle.Text = "Payment Details";
             // 
             // lblBank
             // 
             this.lblBank.AutoSize = true;
-            this.lblBank.Location = new System.Drawing.Point(435, 157);
+            this.lblBank.Location = new System.Drawing.Point(447, 157);
             this.lblBank.Name = "lblBank";
             this.lblBank.Size = new System.Drawing.Size(135, 25);
             this.lblBank.TabIndex = 15;
@@ -166,12 +144,13 @@
             // 
             // btnLogOut
             // 
-            this.btnLogOut.Location = new System.Drawing.Point(1100, 557);
+            this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnLogOut.Location = new System.Drawing.Point(1193, 628);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(134, 63);
             this.btnLogOut.TabIndex = 17;
             this.btnLogOut.Text = "Log Out";
-            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // frmpay
@@ -183,14 +162,11 @@
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.lblPaymentStatus);
             this.Controls.Add(this.lblBank);
-            this.Controls.Add(this.lblTittle);
             this.Controls.Add(this.btnSaveBankDetails);
-            this.Controls.Add(this.txtBranchCode);
             this.Controls.Add(this.cmbAccountType);
             this.Controls.Add(this.txtAccountNumber);
             this.Controls.Add(this.txtAccountHolder);
             this.Controls.Add(this.cmbBank);
-            this.Controls.Add(this.lblBranchCode);
             this.Controls.Add(this.lblAccountType);
             this.Controls.Add(this.lblAccountNumber);
             this.Controls.Add(this.lblAccountHolder);
@@ -211,14 +187,11 @@
         private System.Windows.Forms.Label lblAccountHolder;
         private System.Windows.Forms.Label lblAccountNumber;
         private System.Windows.Forms.Label lblAccountType;
-        private System.Windows.Forms.Label lblBranchCode;
         private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.TextBox txtAccountHolder;
         private System.Windows.Forms.TextBox txtAccountNumber;
         private System.Windows.Forms.ComboBox cmbAccountType;
-        private System.Windows.Forms.TextBox txtBranchCode;
         private System.Windows.Forms.Button btnSaveBankDetails;
-        private System.Windows.Forms.Label lblTittle;
         private System.Windows.Forms.Label lblBank;
         private System.Windows.Forms.Label lblPaymentStatus;
         private System.Windows.Forms.Button btnLogOut;

@@ -42,7 +42,7 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnMy = new System.Windows.Forms.Button();
-            this.lblProofPath = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picProof)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeight)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +50,7 @@
             // lblWasteType
             // 
             this.lblWasteType.AutoSize = true;
-            this.lblWasteType.Location = new System.Drawing.Point(261, 191);
+            this.lblWasteType.Location = new System.Drawing.Point(291, 164);
             this.lblWasteType.Name = "lblWasteType";
             this.lblWasteType.Size = new System.Drawing.Size(136, 25);
             this.lblWasteType.TabIndex = 0;
@@ -59,7 +59,7 @@
             // lblWeight
             // 
             this.lblWeight.AutoSize = true;
-            this.lblWeight.Location = new System.Drawing.Point(261, 248);
+            this.lblWeight.Location = new System.Drawing.Point(291, 221);
             this.lblWeight.Name = "lblWeight";
             this.lblWeight.Size = new System.Drawing.Size(119, 25);
             this.lblWeight.TabIndex = 1;
@@ -68,7 +68,7 @@
             // lblCollectionDate
             // 
             this.lblCollectionDate.AutoSize = true;
-            this.lblCollectionDate.Location = new System.Drawing.Point(261, 311);
+            this.lblCollectionDate.Location = new System.Drawing.Point(291, 283);
             this.lblCollectionDate.Name = "lblCollectionDate";
             this.lblCollectionDate.Size = new System.Drawing.Size(166, 25);
             this.lblCollectionDate.TabIndex = 2;
@@ -77,7 +77,7 @@
             // lblProof
             // 
             this.lblProof.AutoSize = true;
-            this.lblProof.Location = new System.Drawing.Point(261, 506);
+            this.lblProof.Location = new System.Drawing.Point(285, 352);
             this.lblProof.Name = "lblProof";
             this.lblProof.Size = new System.Drawing.Size(172, 25);
             this.lblProof.TabIndex = 3;
@@ -85,17 +85,17 @@
             // 
             // picProof
             // 
-            this.picProof.Location = new System.Drawing.Point(614, 420);
+            this.picProof.Location = new System.Drawing.Point(558, 338);
             this.picProof.Name = "picProof";
-            this.picProof.Size = new System.Drawing.Size(254, 140);
+            this.picProof.Size = new System.Drawing.Size(528, 239);
             this.picProof.TabIndex = 4;
             this.picProof.TabStop = false;
             // 
             // btnUpload
             // 
-            this.btnUpload.Location = new System.Drawing.Point(652, 470);
+            this.btnUpload.Location = new System.Drawing.Point(721, 530);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(149, 61);
+            this.btnUpload.Size = new System.Drawing.Size(151, 36);
             this.btnUpload.TabIndex = 5;
             this.btnUpload.Text = "Upload Proof";
             this.btnUpload.UseVisualStyleBackColor = true;
@@ -109,14 +109,14 @@
             "Plastic",
             "Glass",
             "Cans"});
-            this.cmbWasteType.Location = new System.Drawing.Point(614, 191);
+            this.cmbWasteType.Location = new System.Drawing.Point(614, 156);
             this.cmbWasteType.Name = "cmbWasteType";
             this.cmbWasteType.Size = new System.Drawing.Size(348, 33);
             this.cmbWasteType.TabIndex = 6;
             // 
             // nudWeight
             // 
-            this.nudWeight.Location = new System.Drawing.Point(614, 243);
+            this.nudWeight.Location = new System.Drawing.Point(614, 219);
             this.nudWeight.Name = "nudWeight";
             this.nudWeight.Size = new System.Drawing.Size(348, 30);
             this.nudWeight.TabIndex = 7;
@@ -124,14 +124,14 @@
             // dtpCollectionDate
             // 
             this.dtpCollectionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpCollectionDate.Location = new System.Drawing.Point(614, 311);
+            this.dtpCollectionDate.Location = new System.Drawing.Point(614, 283);
             this.dtpCollectionDate.Name = "dtpCollectionDate";
             this.dtpCollectionDate.Size = new System.Drawing.Size(348, 30);
             this.dtpCollectionDate.TabIndex = 8;
             // 
             // btnSubmitCollection
             // 
-            this.btnSubmitCollection.Location = new System.Drawing.Point(1043, 583);
+            this.btnSubmitCollection.Location = new System.Drawing.Point(1255, 603);
             this.btnSubmitCollection.Name = "btnSubmitCollection";
             this.btnSubmitCollection.Size = new System.Drawing.Size(206, 69);
             this.btnSubmitCollection.TabIndex = 9;
@@ -161,7 +161,7 @@
             // 
             // btnMy
             // 
-            this.btnMy.Location = new System.Drawing.Point(741, 584);
+            this.btnMy.Location = new System.Drawing.Point(1024, 594);
             this.btnMy.Name = "btnMy";
             this.btnMy.Size = new System.Drawing.Size(193, 68);
             this.btnMy.TabIndex = 13;
@@ -169,14 +169,17 @@
             this.btnMy.UseVisualStyleBackColor = true;
             this.btnMy.Click += new System.EventHandler(this.btnMy_Click);
             // 
-            // lblProofPath
+            // label1
             // 
-            this.lblProofPath.AutoSize = true;
-            this.lblProofPath.Location = new System.Drawing.Point(1048, 480);
-            this.lblProofPath.Name = "lblProofPath";
-            this.lblProofPath.Size = new System.Drawing.Size(70, 25);
-            this.lblProofPath.TabIndex = 14;
-            this.lblProofPath.Text = "label1";
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(306, 111);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(864, 25);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Please consider your application unsuccessful if no feedback is recieved within 3" +
+    "- 5 days";
             // 
             // frmSMME
             // 
@@ -184,7 +187,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1596, 703);
-            this.Controls.Add(this.lblProofPath);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnMy);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnBack);
@@ -225,6 +228,6 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnMy;
-        private System.Windows.Forms.Label lblProofPath;
+        private System.Windows.Forms.Label label1;
     }
 }

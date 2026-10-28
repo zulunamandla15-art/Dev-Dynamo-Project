@@ -22,7 +22,7 @@ namespace Dev_Dynamo_Project
       
         private async void btnNotification_Click(object sender, EventArgs e)
         {
-            string name = txtBusiness.Text;
+            string name = "Applicant";
             string email = txtEmail.Text;
             string business = txtBusiness.Text;
             string reference = "MUN-" + DateTime.Now.ToString("yyyyMMdd-HHmm");
@@ -45,21 +45,22 @@ namespace Dev_Dynamo_Project
             try
             {
                 var fromAddress = new MailAddress("thabilemthethwa244@gmail.com", "Municipality SMME");
-                var toAddress = new MailAddress(email); 
+                var toAddress = new MailAddress(email);
 
-                string subject = "Application Received - " + reference;
-                string body = "Dear " + name + ",\n\n" + "Thank you for submitting your application to the EThekwini Municipality - SMME Development Unit.\n\n" +
-                    "We hereby confirm receipt of your application for :\n" +
-                    "Business Name:" + business + "\n" +
-                    "Reference Number:" + reference + "\n" +
-                    "Date Received:" + DateTime.Now.ToString("dd MMMM yyyy HH:mm") + "\n\n" +
-                   " Your application is currently under review. Our team will assess your submissionand communicate the outcome within 5-7 working days.\n\n" +
-                   "Please retain your reference number for all future enquiries.\n\n" +
-                   "For assistance, contact: smme.support@durban.gov.za | 031 311 1111\n\n" +
-                   "Yours faithfully,\n" +
-                   "Municipality SMME Support Team\n" +
-                   "EThekwini Municipality\n" +
-                   "Durban, KwaZulu-Natal";
+                string subject = "Application Successful - " + reference;
+                string body = "Dear " + name + ",\n\n" +
+                "Congratulations! Your application has been successful.\n\n" +
+                "We are pleased to confirm that your application to the eThekwini Municipality - SMME Development Unit has been approved.\n\n" +
+                "Business Name: " + business + "\n" +
+                "Reference Number: " + reference + "\n" +
+                "Date Approved: " + DateTime.Now.ToString("dd MMMM yyyy HH:mm") + "\n\n" +
+                "You can now proceed to the next step and start using our SMME services.\n\n" +
+                "Please keep your reference number for all future enquiries.\n\n" +
+                "For assistance, contact: smme.support@durban.gov.za | 031 311 1111\n\n" +
+                "Yours faithfully,\n" +
+                "Municipality SMME Support Team\n" +
+                "eThekwini Municipality\n" +
+                "Durban, KwaZulu-Natal";
 
                 var message = new MailMessage(fromAddress, toAddress);
                 message.Subject = subject;
@@ -72,8 +73,7 @@ namespace Dev_Dynamo_Project
                 await client.SendMailAsync(message);
 
                 lblStatus.ForeColor = Color.Green;
-                lblStatus.Text = "SUCCESS! Popped up on " + email;
-                MessageBox.Show("SUCCESS! Email popped up on " + email + "\nCheck your phone now!");
+                lblStatus.Text = "Email Sent";
             }
             catch (Exception ex)
             {
